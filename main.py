@@ -36,7 +36,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         all_images = []
         for link in user_sessions[chat_id][:4]:
-            imgs = get_two_images_from_amazon(link)
+            imgs = await get_two_images_from_amazon(link)
             all_images.extend(imgs)
 
         output_path = tempfile.mktemp(suffix=".jpg")

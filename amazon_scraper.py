@@ -1,13 +1,13 @@
 from bs4 import BeautifulSoup
-from playwright.sync_api import sync_playwright
+from playwright.async_api import async_playwright
 
-def get_two_images_from_amazon(url):
-    with sync_playwright() as p:
-        browser = p.chromium.launch()
-        page = browser.new_page()
-        page.goto(url, timeout=60000)
-        page.wait_for_selector("img", timeout=15000)
-        html = page.content()
+async def get_two_images_from_amazon(url):
+    async with async_playwright() as p:
+        browser = await p.chromium.launch()
+        page = await browser.new_page()
+        await page.goto(url, timeout=60000)
+        await page.wait_for_selector("img", timeout=15000)
+        html = await page.content()
         soup = BeautifulSoup(html, 'html.parser')
         img_tags = soup.find_all("img")
         img_urls = []
@@ -15,5 +15,5 @@ def get_two_images_from_amazon(url):
             src = img.get("src")
             if src and "media-amazon" in src and src.endswith(".jpg"):
                 img_urls.append(src)
-        browser.close()
+        await browser.close()
         return img_urls[:2]

@@ -6,7 +6,7 @@ from amazon_scraper import get_two_images_from_amazon
 import tempfile
 import os
 
-TOKEN = "7619630594:AAHYQbwFwGg0xiqG5KF1ayFrh5hJxHxP-To"
+TOKEN = "7542976774:AAHrOuImOzDDKroDuqBYFhlVaAE4M08zPRY"
 
 logging.basicConfig(level=logging.INFO)
 
